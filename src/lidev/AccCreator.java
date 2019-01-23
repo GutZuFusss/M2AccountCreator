@@ -1,14 +1,36 @@
 package lidev;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
+
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.ScriptException;
+import com.gargoylesoftware.htmlunit.SilentCssErrorHandler;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.javascript.JavaScriptErrorListener;
 
 public abstract class AccCreator {
 	private WebClient client;
 
 	public AccCreator(BrowserVersion browser) {
 		setClient(new WebClient(browser));
+
+		getClient().getOptions().setThrowExceptionOnScriptError(false);
+		getClient().getOptions().setThrowExceptionOnFailingStatusCode(false);
+		getClient().setCssErrorHandler(new SilentCssErrorHandler());    
+		getClient().setJavaScriptErrorListener(new JavaScriptErrorListener(){
+			@Override
+			public void loadScriptError(HtmlPage arg0, URL arg1, Exception arg2) {}
+			@Override
+			public void malformedScriptURL(HtmlPage arg0, String arg1, MalformedURLException arg2) {}
+			@Override
+			public void scriptException(HtmlPage arg0, ScriptException arg1) {}
+
+			@Override
+			public void timeoutError(HtmlPage arg0, long arg1, long arg2) {}
+		});
 	}
 
 	public abstract boolean createAccount(); // must be implemented by subclasses, should contain the main account creation progress

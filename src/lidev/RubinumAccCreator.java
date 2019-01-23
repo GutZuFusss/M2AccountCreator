@@ -2,8 +2,11 @@ package lidev;
 
 import java.io.IOException;
 
-import com.gargoylesoftware.htmlunit.*;
-import com.gargoylesoftware.htmlunit.html.*;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import com.gargoylesoftware.htmlunit.html.HtmlButton;
+import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 public class RubinumAccCreator extends AccCreator{
 	private final int USER_LEN = 8;
@@ -18,6 +21,7 @@ public class RubinumAccCreator extends AccCreator{
 			HtmlPage page = getClient().getPage("https://s1.rubinum.biz/register");
 			HtmlForm form = page.getForms().get(0); // spaghetti but 1 line, apparently rubinum is not able to name their forms... w/e
 			
+			// gather information
 			String username = generateRandString(false, USER_LEN);
 			String delCode = generateRandDelCode(7);
 			String email = username + generateEMail(username);
