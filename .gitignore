@@ -2,5 +2,6 @@
 /.settings/
 /temp/
 .DS_Store
+src/.DS_Store
 .classpath
 .project
