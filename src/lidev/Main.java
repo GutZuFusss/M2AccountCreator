@@ -8,7 +8,10 @@ public class Main {
 		/*RubinumAccCreator ac = new RubinumAccCreator(BrowserVersion.FIREFOX_60);
 		ac.createAccount();*/
 		
-		InternationalAccCreator ac = new InternationalAccCreator(BrowserVersion.FIREFOX_60);
+		/*InternationalAccCreator ac = new InternationalAccCreator(BrowserVersion.FIREFOX_60);
+		ac.createAccount();*/
+		
+		AdaraAccCreator ac = new AdaraAccCreator(BrowserVersion.FIREFOX_60);
 		ac.createAccount();
 	}
 }
