@@ -11,7 +11,7 @@ public abstract class AccCreator {
 		setClient(new WebClient(browser));
 	}
 
-	public abstract boolean createAccount(String user, String pw); // must be implemented by subclasses, should contain the main account creation progress
+	public abstract boolean createAccount(); // must be implemented by subclasses, should contain the main account creation progress
 	
 	// used to generate random usernames & passwords
 	protected String generateRandString(boolean numbers, int minLength) {
@@ -21,8 +21,8 @@ public abstract class AccCreator {
 		Random rand = new Random();
 		int len = minLength + rand.nextInt(4);
 		StringBuilder sb = new StringBuilder(len);
-		for(int i=0; i<len; i++) {
-			if(numbers && len - i <= 1 + (len%3)) { // if wanted, the last chars will be numbers
+		for(int i = 0; i < len; i++) {
+			if(numbers && len - i <= 1 + (len % 3)) { // if wanted, the last chars will be numbers
 				sb.append(rand.nextInt(10));
 				continue;
 			}
@@ -53,7 +53,7 @@ public abstract class AccCreator {
 	protected String generateRandDelCode(int len) {
 		Random rand = new Random();
 		StringBuilder sb = new StringBuilder(len);
-		for(int i=0; i<len; i++)
+		for(int i = 0; i < len; i++)
 			sb.append(rand.nextInt(10));
 
 		return sb.toString();
